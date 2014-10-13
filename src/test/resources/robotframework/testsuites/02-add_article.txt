@@ -1,0 +1,21 @@
+*** Settings ***
+
+Documentation  A test suite with a single test for adding an article on the Invoicing application site. This 
+...            test has a work-flow that is created using keywords from the resource file.
+Resource       resource.txt
+
+
+*** Test Cases ***
+
+Valid Article Addition
+    Open Browser To Main Page
+    Main Page Should Be Open
+	Remove Standard Product
+    Add Article
+	Enter Article Description
+	Enter Quantity
+	Enter Unit Cost
+	Sub Total Should Be Correct
+	Tax Amount Should Be Correct
+	Grand Total Should Be Correct
+	[Teardown]  Close Browser

@@ -1,0 +1,13 @@
+*** Settings ***
+
+Documentation  A test suite with a single test for a valid invocation of the Invoicing application site. This 
+...            test has a work-flow that is created using keywords from the resource file.
+Resource       resource.txt
+
+
+*** Test Cases ***
+
+Valid Page Invocation
+    Open Browser To Main Page
+    Main Page Should Be Open 
+    [Teardown]  Close Browser

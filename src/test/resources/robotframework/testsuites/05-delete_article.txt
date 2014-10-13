@@ -1,0 +1,17 @@
+*** Settings ***
+
+Documentation  A test suite with a single test for deleting an article on the Invoicing application site. This 
+...            test has a work-flow that is created using keywords from the resource file.
+Resource       resource.txt
+
+
+*** Test Cases ***
+
+Valid Article Removal
+    Open Browser To Main Page
+    Main Page Should Be Open
+	Delete Article
+	Sub Total After Removal Should Be Correct
+    Tax Amount After Removal Should Be Correct
+    Grand Total After Removal Should Be Correct
+    [Teardown]  Close Browser

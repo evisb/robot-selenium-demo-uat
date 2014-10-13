@@ -1,0 +1,17 @@
+*** Settings ***
+
+Documentation  A test suite with a single test for modifying the unit cost of an article on the Invoicing application site. This 
+...            test has a work-flow that is created using keywords from the resource file.
+Resource       resource.txt
+
+
+*** Test Cases ***
+
+Valid Unit Cost Modification
+    Open Browser To Main Page
+    Main Page Should Be Open
+	Modify Unit Cost
+	Modified Sub Total After Price Update Should Be Correct
+	Modified Tax Amount After Price Update Should Be Correct
+	Modified Grand Total After Price Update Should Be Correct
+    [Teardown]  Close Browser

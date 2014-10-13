@@ -1,0 +1,17 @@
+*** Settings ***
+
+Documentation  A test suite with a single test for modifying the quantity of articles on the Invoicing application site. This 
+...            test has a work-flow that is created using keywords from the resource file.
+Resource       resource.txt
+
+
+*** Test Cases ***
+
+Valid Quantity Modification
+    Open Browser To Main Page
+    Main Page Should Be Open
+    Modify Quantity
+	Modified Sub Total Should Be Correct
+	Modified Tax Amount Should Be Correct
+	Modified Grand Total Should Be Correct
+	[Teardown]  Close Browser

@@ -1,0 +1,140 @@
+*** Settings ***
+Library        Selenium2Library
+
+*** Variables ***
+
+${SERVER}                     http://127.0.0.1:8080/easy-invoicing/#
+${MAIN URL}                   http://127.0.0.1:8080/easy-invoicing/#
+${ERROR URL}                  http://127.0.0.1:8080/easy-invoicing/#
+${BROWSER}                    firefox
+${DELAY}                      10
+${ARTICLE DESCRIPTION}        Computer screen
+${INITIAL QUANTITY}           2
+${MODIFIED QUANTITY}          15
+${PRICE}                      300
+${MODIFIED PRICE}             55
+${SUB TOTAL}                  €600.00
+${TAX}                        €126.00
+${GRAND TOTAL}                €726.00
+${MODIFIED SUB TOTAL}         €149.25
+${MODIFIED TAX}               €31.34
+${MODIFIED GRAND TOTAL}  	  €180.59
+${MODIFIED COST SUB TOTAL}    €550.00
+${MODIFIED COST TAX}          €115.50
+${MODIFIED COST GRAND TOTAL}  €665.50
+${REMOVAL SUB TOTAL}          €0.00
+${REMOVAL TAX}                €0.00
+${REMOVAL GRAND TOTAL}        €0.00
+
+ 
+
+*** Keywords ***
+
+Open Browser To Main Page
+    Open Browser  ${SERVER}  ${BROWSER}
+    Set Selenium Speed  ${DELAY}
+    Title Should Be  Invoicing application
+	
+Main Page Should Be Open
+    Location Should Contain  ${MAIN URL}
+	
+Remove Standard Product
+    Set Selenium Speed  ${DELAY}
+	Click Link    [X]
+	
+Add Article
+    Set Selenium Speed  ${DELAY}
+	Click Link    Add Item
+	
+Enter Article Description
+    Set Selenium Speed  ${DELAY}
+	Input Text    //*[@id="invoice"]/table[3]/tbody/tr[2]/td[2]/input  ${ARTICLE DESCRIPTION}
+	
+Enter Quantity
+    Set Selenium Speed  ${DELAY}
+    Input Text    //*[@id="invoice"]/table[3]/tbody/tr[2]/td[3]/input  ${INITIAL QUANTITY}
+	
+Enter Unit Cost
+    Set Selenium Speed  ${DELAY}
+	Input Text    //*[@id="invoice"]/table[3]/tbody/tr[2]/td[4]/input  ${PRICE}
+
+Sub Total Should Be Correct
+    Set Selenium Speed  ${DELAY}
+	Table Should Contain  css=#invoice > table.table.table-striped  ${SUB TOTAL}
+	
+Tax Amount Should Be Correct
+    Set Selenium Speed  ${DELAY}
+	Table Should Contain  css=#invoice > table.table.table-striped  ${TAX}
+	
+Grand Total Should Be Correct
+    Set Selenium Speed  ${DELAY}
+	Table Should Contain  css=#invoice > table.table.table-striped  ${GRAND TOTAL}
+	
+Modify Quantity
+    Set Selenium Speed  ${DELAY}
+    Input Text    //*[@id="invoice"]/table[3]/tbody/tr[2]/td[3]/input  ${MODIFIED QUANTITY}
+	
+Modified Sub Total Should Be Correct
+    Set Selenium Speed  ${DELAY}
+	Table Should Contain  css=#invoice > table.table.table-striped  ${MODIFIED SUB TOTAL}
+	
+Modified Tax Amount Should Be Correct
+    Set Selenium Speed  ${DELAY}
+	Table Should Contain  css=#invoice > table.table.table-striped  ${MODIFIED TAX}
+	
+Modified Grand Total Should Be Correct
+    Set Selenium Speed  ${DELAY}
+	Table Should Contain  css=#invoice > table.table.table-striped  ${MODIFIED GRAND TOTAL}
+
+Modify Unit Cost
+    Set Selenium Speed  ${DELAY}
+	Input Text    //*[@id="invoice"]/table[3]/tbody/tr[2]/td[4]/input  ${MODIFIED PRICE}
+	
+Modified Sub Total After Price Update Should Be Correct
+    Set Selenium Speed  ${DELAY}
+	Table Should Contain  css=#invoice > table.table.table-striped  ${MODIFIED COST SUB TOTAL}
+	
+Modified Tax Amount After Price Update Should Be Correct
+    Set Selenium Speed  ${DELAY}
+	Table Should Contain  css=#invoice > table.table.table-striped  ${MODIFIED COST TAX}
+	
+Modified Grand Total After Price Update Should Be Correct
+    Set Selenium Speed  ${DELAY}
+	Table Should Contain  css=#invoice > table.table.table-striped  ${MODIFIED COST GRAND TOTAL}
+
+Delete Article
+    Set Selenium Speed  ${DELAY}
+	Click Link    [X]
+	
+Sub Total After Removal Should Be Correct
+    Set Selenium Speed  ${DELAY}
+	Table Should Contain  css=#invoice > table.table.table-striped  ${REMOVAL SUB TOTAL}
+	
+Tax Amount After Removal Should Be Correct
+    Set Selenium Speed  ${DELAY}
+	Table Should Contain  css=#invoice > table.table.table-striped  ${REMOVAL TAX}
+	
+Grand Total After Removal Should Be Correct
+    Set Selenium Speed  ${DELAY}
+	Table Should Contain  css=#invoice > table.table.table-striped  ${REMOVAL GRAND TOTAL}
+
+
+*** POTENTIAL TESTS ***
+
+Input Username  [Arguments]  ${username}
+    Input Text  uid  ${username}
+
+Submit Credentials
+    Set Selenium Speed  ${DELAY}
+    Click Button   Test
+  
+Log out
+    Set Selenium Speed  ${DELAY}
+    Click Image  Logout
+    
+Logout Page Should Be Open
+    Location Should Be  ${LOGOUT URL}
+
+Login Should Have Failed
+    Location Should Be  ${ERROR URL}
+    Title Should Contain  Login Form
