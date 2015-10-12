@@ -12,7 +12,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<robotframework.version>2.9.2</robotframework.version>
-		<robotframework.selenium2library.version>1.7.4</robotframework.selenium2library.version>
+		<robotframework.selenium2library.version>1.4.0.6</robotframework.selenium2library.version>
 	</properties>
 
 	<build>
