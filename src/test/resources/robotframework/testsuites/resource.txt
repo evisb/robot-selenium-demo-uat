@@ -3,9 +3,9 @@ Library        Selenium2Library
 
 *** Variables ***
 
-${SERVER}                     http://127.0.0.1:8080/easy-invoicing/#
-${MAIN URL}                   http://127.0.0.1:8080/easy-invoicing/#
-${ERROR URL}                  http://127.0.0.1:8080/easy-invoicing/#
+${SERVER}                     http://appservereb.cloudapp.net:8080/easy-invoicing/#
+${MAIN URL}                   http://appservereb.cloudapp.net:8080/easy-invoicing/#
+${ERROR URL}                  http://appservereb.cloudapp.net:8080/easy-invoicing/#
 ${BROWSER}                    firefox
 ${DELAY}                      10
 ${ARTICLE DESCRIPTION}        Computer screen
