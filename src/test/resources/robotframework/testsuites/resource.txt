@@ -6,7 +6,7 @@ Library        Selenium2Library
 ${SERVER}                     http://appservereb.cloudapp.net:8080/easy-invoicing/#
 ${MAIN URL}                   http://appservereb.cloudapp.net:8080/easy-invoicing/#
 ${ERROR URL}                  http://appservereb.cloudapp.net:8080/easy-invoicing/#
-${BROWSER}                    firefox
+${BROWSER}                    chrome
 ${DELAY}                      10
 ${ARTICLE DESCRIPTION}        Computer screen
 ${INITIAL QUANTITY}           2
